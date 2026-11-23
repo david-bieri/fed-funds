@@ -127,6 +127,15 @@ body{font-family:var(--font-sans);background:var(--color-background-primary);col
 </div>
 
 <script>
+// ---- Claude API: model and headers in one place (bieri-ai webdev:claude-api-client) ----
+// To change the model, edit CLAUDE_API.model only; README and CLAUDE.md name the same ID.
+const CLAUDE_API={model:'claude-sonnet-5-5',version:'2023-06-01'};
+function claudeHeaders(key){
+  const h={'Content-Type':'application/json','anthropic-version':CLAUDE_API.version};
+  if(key){h['x-api-key']=key;h['anthropic-dangerous-direct-browser-access']='true';}
+  return h;
+}
+
 // --- ZQ seed data (12 months, corrected FOMC schedule) ─────────────────────
 let fwActive='inputs';
 let fwActiveScenario='';
@@ -213,9 +222,9 @@ async function refreshData(){
   const today=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
   const prompt=`Today is ${today}. Return ONLY raw JSON — no markdown, no fences — for CME 30-Day Fed Funds (ZQ) futures prices Apr 2026–Mar 2027 and FOMC meeting dates. Shape:
 {"asOf":"YYYY-MM-DD","source":"name","effr":3.64,"prices":{"Apr 2026":96.36,"May 2026":96.40,"Jun 2026":96.50,"Jul 2026":96.58,"Aug 2026":96.65,"Sep 2026":96.72,"Oct 2026":96.78,"Nov 2026":96.85,"Dec 2026":96.90,"Jan 2027":96.94,"Feb 2027":96.97,"Mar 2027":97.00},"meetings":{"Apr 2026":{"hasMeeting":true,"label":"Apr 28-29","N":28,"M":2},"May 2026":{"hasMeeting":false,"label":"","N":0,"M":0},"Jun 2026":{"hasMeeting":true,"label":"Jun 17-18","N":17,"M":13},"Jul 2026":{"hasMeeting":true,"label":"Jul 28-29","N":28,"M":3},"Aug 2026":{"hasMeeting":false,"label":"","N":0,"M":0},"Sep 2026":{"hasMeeting":true,"label":"Sep 16-17","N":16,"M":14},"Oct 2026":{"hasMeeting":true,"label":"Oct 28-29","N":28,"M":3},"Nov 2026":{"hasMeeting":false,"label":"","N":0,"M":0},"Dec 2026":{"hasMeeting":true,"label":"Dec 9-10","N":9,"M":22},"Jan 2027":{"hasMeeting":true,"label":"Jan 27-28","N":27,"M":4},"Feb 2027":{"hasMeeting":false,"label":"","N":0,"M":0},"Mar 2027":{"hasMeeting":true,"label":"Mar 17-18","N":17,"M":14}}}`;
-  const hdrs={'Content-Type':'application/json'}; if(key) hdrs['x-api-key']=key;
+  const hdrs=claudeHeaders(key);
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:CLAUDE_API.model,max_tokens:1200,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     if(!res.ok) throw new Error((await res.json().catch(()=>({}))).error?.message||`API ${res.status}`);
     const data=await res.json();
     const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
@@ -271,9 +280,9 @@ Return ONLY raw JSON, no markdown, no fences. Use this exact shape (fill best av
   "cutBinary":{"end-2026":0.85,"end-2027":0.97},
   "kalshiRate":{"Apr 2026":3.625,"Jun 2026":3.54,"Jul 2026":3.47,"Sep 2026":3.38,"Oct 2026":3.30,"Dec 2026":3.22,"Jan 2027":3.16,"Mar 2027":3.10}
 }`;
-  const hdrs={'Content-Type':'application/json'}; if(key) hdrs['x-api-key']=key;
+  const hdrs=claudeHeaders(key);
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:CLAUDE_API.model,max_tokens:1400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     if(!res.ok) throw new Error((await res.json().catch(()=>({}))).error?.message||`API ${res.status}`);
     const data=await res.json();
     const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
@@ -370,9 +379,9 @@ Return ONLY raw JSON, no markdown, no fences:
   "cutByMeeting":{"Apr 2026":0.01,"Jun 2026":0.22,"Jul 2026":0.45,"Sep 2026":0.68,"Oct 2026":0.78,"Dec 2026":0.88,"end-2026":0.88,"end-2027":0.97},
   "fedChair":{"Kevin Warsh":0.47,"Rick Rieder":0.26,"Other":0.27}
 }`;
-  const hdrs={'Content-Type':'application/json'};if(key)hdrs['x-api-key']=key;
+  const hdrs=claudeHeaders(key);
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:CLAUDE_API.model,max_tokens:1400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     if(!res.ok)throw new Error((await res.json().catch(()=>({}))).error?.message||`API ${res.status}`);
     const data=await res.json();
     const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
@@ -1401,9 +1410,9 @@ async function fetchYieldCurve(){
   const prompt=`Today is ${today}. Search for the latest U.S. Treasury constant-maturity (CMT) par rates from the Federal Reserve H.15 release or Treasury.gov. Find the most recent daily values for: 3-month, 6-month, 1-year, 2-year, 5-year, 10-year, and 30-year. Return ONLY raw JSON, no markdown, no fences:
 {"asOf":"YYYY-MM-DD","source":"Federal Reserve H.15","rates":{"3mo":3.64,"6mo":3.60,"1yr":3.55,"2yr":3.84,"5yr":4.04,"10yr":4.31,"30yr":4.61}}
 Use null for any maturity not available. Keep fallback values shown if search fails.`;
-  const hdrs={'Content-Type':'application/json'};if(key)hdrs['x-api-key']=key;
+  const hdrs=claudeHeaders(key);
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:CLAUDE_API.model,max_tokens:400,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     if(!res.ok)throw new Error((await res.json().catch(()=>({}))).error?.message||`API ${res.status}`);
     const data=await res.json();
     const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
@@ -1562,9 +1571,9 @@ async function fetchSOFR(){
   const prompt=`Today is ${today}. Search for the latest CME 3-Month SOFR futures (SR3) settlement or last-trade prices for these contract months: Jun 2026 (SR3M6), Sep 2026 (SR3U6), Dec 2026 (SR3Z6), Mar 2027 (SR3H7), Jun 2027 (SR3M7), Sep 2027 (SR3U7), Dec 2027 (SR3Z7). Also find the current SOFR fixing rate. Return ONLY raw JSON — no markdown, no fences:
 {"asOf":"YYYY-MM-DD","source":"source name","sofr":3.68,"prices":{"Jun 2026":96.35,"Sep 2026":96.53,"Dec 2026":96.68,"Mar 2027":96.80,"Jun 2027":96.88,"Sep 2027":96.94,"Dec 2027":96.99}}
 Prices follow the CME convention (100 minus implied rate). Keep fallback values shown if a contract is unavailable.`;
-  const hdrs={'Content-Type':'application/json'};if(key)hdrs['x-api-key']=key;
+  const hdrs=claudeHeaders(key);
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:hdrs,body:JSON.stringify({model:CLAUDE_API.model,max_tokens:600,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     if(!res.ok)throw new Error((await res.json().catch(()=>({}))).error?.message||`API ${res.status}`);
     const data=await res.json();
     const text=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');

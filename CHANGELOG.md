@@ -6,6 +6,12 @@ All notable changes to this project are documented here. Dates reflect the data 
 
 ## [Unreleased]
 
+### Fixed — 2026-11-23 (pushed straight to main)
+- Live refresh had failed since 15 Jun 2026: every call used `claude-sonnet-4-20250514`, which Anthropic retired. Model is now `claude-sonnet-5-5`, set once in `CLAUDE_API`.
+- Calls now send the required `anthropic-version` header and, with a pasted key, `anthropic-dangerous-direct-browser-access` (without it the browser blocked standalone calls).
+- Same fixes in `fed_funds_probability_tree.html`.
+- API key moved from localStorage to sessionStorage (cleared when the tab closes); a key saved earlier is moved over once.
+
 ### Changed
 - API key entry replaced with persistent settings modal (ApiKeyModal component)
   - ⚙ gear button + status chip in sticky nav (always visible, scroll-safe)

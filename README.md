@@ -189,7 +189,7 @@ Positive gap = market prices less tightening than the Fed's long-run projection.
 | **FRED — Financial Stability** | NFCI (Chicago Fed, weekly), CB liquidity swap outstandings (SWPT), ICE BofA HY OAS (BAMLH0A0HYM2) | Fetch FRED button (Tab 11) |
 | **FRED — Balance Sheet** | WALCL, WTREGEN, WMBSEC, RRPONTSYD, WRESBAL, DFEDTARL, DFF, DTB3 (Fed H.4.1 weekly) | Fetch H.4.1 button (Tab 10) |
 
-Live refresh uses the Anthropic API with web search (`claude-sonnet-4-6`). Inside claude.ai the API key is injected automatically. For standalone use, paste an `sk-ant-...` key into the field in the top-right corner of the tool.
+Live refresh uses the Anthropic API with web search (`claude-sonnet-5-5`, set once in `CLAUDE_API` near the top of the script). Inside claude.ai the API key is injected automatically. For standalone use, paste an `sk-ant-...` key into the field in the top-right corner of the tool.
 
 ---
 

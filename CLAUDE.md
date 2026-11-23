@@ -16,14 +16,14 @@ ROADMAP.md
 - **React 18 + Babel** via CDN -- no build step, no bundler
 - **State**: useReducer with 17-action state machine; all derived values in memoized useFinance hook
 - **Rendering**: SVG string concatenation injected via dangerouslySetInnerHTML for chart panels; React JSX for interactive controls
-- **Live data**: Anthropic API + web search (claude-sonnet-4-6), separate fetch functions per source
-- **API key**: injected automatically inside claude.ai; manual sk-ant-... field for standalone use
+- **Live data**: Anthropic API + web search; model and headers in `CLAUDE_API` / `claudeHeaders()` (claude-sonnet-5-5), separate fetch functions per source; check with `python check_models.py .` from the bieri-ai webdev:claude-api-client skill
+- **API key**: injected automatically inside claude.ai; manual sk-ant-... field for standalone use, kept in sessionStorage (`mse-api-key`)
 - **Persistence**: localStorage saves ZQ prices, active scenario, compare scenario
 
 ## Editing conventions
 - **Prefer targeted str_replace over full rewrites** -- file is ~4,200 lines, full reads cause API 500 errors
 - **Scoped context blocks**: name specific functions/components in session preamble, never "read full file"
-- **Syntax check after every JS change**: `node --check fed_funds_v3.html`
+- **Syntax check after every JS change**: `node check_html.mjs fed_funds_v3.html` (bieri-ai webdev:single-file-app; `node --check` rejects .html files)
 - **str_replace find strings**: ASCII only -- no \u escapes, no Unicode. Use HTML entities (&#9632; &#8212; etc.) in replacement strings only
 - **Input handlers**: always `onchange`, never `oninput` -- prevents re-render loops
 - **Arrow functions in SVG helpers**: use `function(){}` not `=>` to avoid minifier edge cases
@@ -57,7 +57,7 @@ Anchor months (no meeting): May, Aug, Nov, Feb
 - Session start: `git checkout dev && git pull origin main`
 - Version seal: merge dev->main --no-ff, tag -a vX.Y, push --tags
 - Short-lived PAT (classic, repo scope only), revoked after each push
-- Run `node --check fed_funds_v3.html` before every commit
+- Run `node check_html.mjs fed_funds_v3.html` before every commit
 
 ## Related repo
 github.com/david-bieri/oil-scenarios -- Monte Carlo oil price calculator
