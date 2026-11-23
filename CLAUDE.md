@@ -1,7 +1,7 @@
 # MSE — Multi-Market Framework for Federal Reserve Policy Analytics
 
 ## What this is
-Single-file React 18 (CDN + Babel) tool implementing CME FedWatch methodology extended into a full monetary policy analytics suite. Deployed via GitHub Pages at davidbieri.github.io/fed-funds. Current version: v4.5.
+Single-file React 18 (CDN + Babel) tool implementing CME FedWatch methodology extended into a full monetary policy analytics suite. Deployed via GitHub Pages at david-bieri.github.io/fed-funds. Current version: v4.5.
 
 ## File structure
 ```
@@ -60,4 +60,4 @@ Anchor months (no meeting): May, Aug, Nov, Feb
 - Run `node --check fed_funds_v3.html` before every commit
 
 ## Related repo
-github.com/davidbieri/oil-scenarios -- Monte Carlo oil price calculator
+github.com/david-bieri/oil-scenarios -- Monte Carlo oil price calculator

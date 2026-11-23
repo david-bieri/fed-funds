@@ -464,7 +464,7 @@ All notable changes to this project are documented here. Dates reflect the data 
 - **SR3 live refresh**: dedicated Fetch SR3 button using Anthropic API + web search, independent of ZQ refresh
 - **Instantaneous forward rate**: strips the 3-month averaging effect from adjacent SR3 contracts to expose the marginal rate the market prices for each successive quarter
 - **Version badge** in header, updated on each data refresh
-- **GitHub Pages support**: `index.html` redirect at repo root; enable Pages at `Settings → Pages → main / (root)` for live URL at `davidbieri.github.io/fed-funds`
+- **GitHub Pages support**: `index.html` redirect at repo root; enable Pages at `Settings → Pages → main / (root)` for live URL at `david-bieri.github.io/fed-funds`
 - **Improved tab bar**: wraps on narrow screens
 
 ### Changed

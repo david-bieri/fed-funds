@@ -2,11 +2,11 @@
 
 **A multi-market framework for Federal Reserve policy analytics.**
 
-[![Version](https://img.shields.io/badge/version-4.5-blue)](https://github.com/davidbieri/fed-funds/blob/main/CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.5-blue)](https://github.com/david-bieri/fed-funds/blob/main/CHANGELOG.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-brightgreen)](https://davidbieri.github.io/fed-funds/)
+[![GitHub Pages](https://img.shields.io/badge/deployed-GitHub%20Pages-brightgreen)](https://david-bieri.github.io/fed-funds/)
 
-**Live tool:** [davidbieri.github.io/fed-funds](https://davidbieri.github.io/fed-funds/)  
+**Live tool:** [david-bieri.github.io/fed-funds](https://david-bieri.github.io/fed-funds/)  
 **Virginia Tech · School of Public and International Affairs**
 
 > *MSE — after Marriner S. Eccles (1890–1977), principal economic philosopher of the New Deal, architect of the modern Federal Reserve.*
@@ -287,7 +287,7 @@ CLAUDE.md                         ← Claude Code session instructions
 ## File structure
 
 ```
-davidbieri.github.io/fed-funds/
+david-bieri.github.io/fed-funds/
 ├── index.html                    ← Landing page (this file launches tool in iframe modal)
 └── fed_funds_v3.html               ← The tool itself
 ```
@@ -299,7 +299,7 @@ davidbieri.github.io/fed-funds/
 No build step, no dependencies. Open `fed_funds_v3.html` directly in any modern browser.
 
 ```bash
-git clone https://github.com/davidbieri/fed-funds.git
+git clone https://github.com/david-bieri/fed-funds.git
 cd fed-funds
 open fed_funds_v3.html   # macOS
 # or: xdg-open fed_funds_v3.html  (Linux)
@@ -312,7 +312,7 @@ All values in the **Futures Inputs** tab are editable at any time — override a
 
 ## GitHub Pages
 
-The tool is live at **[davidbieri.github.io/fed-funds](https://davidbieri.github.io/fed-funds/)** — no login, no server, opens directly in any browser.
+The tool is live at **[david-bieri.github.io/fed-funds](https://david-bieri.github.io/fed-funds/)** — no login, no server, opens directly in any browser.
 
 To enable Pages on a fork: **Settings → Pages → Source: Deploy from branch → Branch: main / (root) → Save**.
 
@@ -349,7 +349,7 @@ Where MSE extends beyond WIRP: prediction market integration (Kalshi, Polymarket
 ## Citation
 
 **APA**
-> Bieri, D. (2026). *MSE: A multi-market framework for Federal Reserve policy analytics* (v4.5) [Interactive tool]. Virginia Tech School of Public and International Affairs. GitHub. https://github.com/davidbieri/fed-funds
+> Bieri, D. (2026). *MSE: A multi-market framework for Federal Reserve policy analytics* (v4.5) [Interactive tool]. Virginia Tech School of Public and International Affairs. GitHub. https://github.com/david-bieri/fed-funds
 
 **BibTeX**
 ```bibtex
@@ -360,12 +360,12 @@ Where MSE extends beyond WIRP: prediction market integration (Kalshi, Polymarket
   version     = {4.5},
   institution = {Virginia Tech School of Public and International Affairs},
   publisher   = {GitHub},
-  url         = {https://github.com/davidbieri/fed-funds}
+  url         = {https://github.com/david-bieri/fed-funds}
 }
 ```
 
 **Chicago**
-> Bieri, David. 2026. "MSE: A Multi-Market Framework for Federal Reserve Policy Analytics." v4.5. Interactive tool. Virginia Tech School of Public and International Affairs. GitHub. https://github.com/davidbieri/fed-funds.
+> Bieri, David. 2026. "MSE: A Multi-Market Framework for Federal Reserve Policy Analytics." v4.5. Interactive tool. Virginia Tech School of Public and International Affairs. GitHub. https://github.com/david-bieri/fed-funds.
 
 ---
 

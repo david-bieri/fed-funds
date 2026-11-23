@@ -667,7 +667,7 @@ Performance:
 
 GitHub deployment:
   After each phase, update CHANGELOG.md with the new tab name and key formulas 
-  implemented. The file can be pushed to github.com/davidbieri/fed-funds as a 
+  implemented. The file can be pushed to github.com/david-bieri/fed-funds as a 
   drop-in replacement for the existing HTML file (index.html redirect unchanged).
 
 Regression prevention:
