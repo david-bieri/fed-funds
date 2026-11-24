@@ -6,6 +6,10 @@ All notable changes to this project are documented here. Dates reflect the data 
 
 ## [Unreleased]
 
+### Changed — 2026-11-24
+- Libraries pinned: react and react-dom 18.3.1 production builds, @babel/standalone 7.29.15 (was unversioned react@18 development builds and the latest Babel, which is now Babel 8). Rendered offline with both settings; same output.
+- CLAUDE.md action registry updated to the 27 actions the reducer handles.
+
 ### Fixed — 2026-11-23 (pushed straight to main)
 - Live refresh had failed since 15 Jun 2026: every call used `claude-sonnet-4-20250514`, which Anthropic retired. Model is now `claude-sonnet-5-5`, set once in `CLAUDE_API`.
 - Calls now send the required `anthropic-version` header and, with a pasted key, `anthropic-dangerous-direct-browser-access` (without it the browser blocked standalone calls).

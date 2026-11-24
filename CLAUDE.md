@@ -13,8 +13,8 @@ ROADMAP.md
 ```
 
 ## Architecture
-- **React 18 + Babel** via CDN -- no build step, no bundler
-- **State**: useReducer with 17-action state machine; all derived values in memoized useFinance hook
+- **React 18 + Babel** via CDN -- no build step, no bundler; pinned: react/react-dom 18.3.1 production builds, @babel/standalone 7.29.15 (React 19 dropped the UMD builds; never use an unversioned CDN URL)
+- **State**: useReducer with 27-action state machine; all derived values in memoized useFinance hook
 - **Rendering**: SVG string concatenation injected via dangerouslySetInnerHTML for chart panels; React JSX for interactive controls
 - **Live data**: Anthropic API + web search; model and headers in `CLAUDE_API` / `claudeHeaders()` (claude-sonnet-5-5), separate fetch functions per source; check with `python check_models.py .` from the bieri-ai webdev:claude-api-client skill
 - **API key**: injected automatically inside claude.ai; manual sk-ant-... field for standalone use, kept in sessionStorage (`mse-api-key`)
@@ -41,12 +41,15 @@ Update SET_TAB reducer if adding tabs.
 --c-combined (violet, balance sheet combined stance)
 --c-neutral-floor (muted, balance sheet reference lines)
 
-## Reducer actions (17 total)
-SET_TAB, SET_LB, SET_SCENARIO, SET_COMPARE, UPDATE_ZQ_PRICE, UPDATE_ZQ_MTG,
-UPDATE_ZQ_N, UPDATE_ZQ_M, UPDATE_SR_PRICE, UPDATE_YC_RATE,
-APPLY_LIVE_ZQ, APPLY_LIVE_KALSHI, APPLY_LIVE_POLY, APPLY_LIVE_SOFR,
-APPLY_LIVE_YC, UPDATE_TAYLOR, UPDATE_TR, SET_RIDE_SELECTED,
-APPLY_BALANCE_SHEET, APPLY_FIN_STAB, SET_BSD, SET_FSD, LOAD_SETTINGS
+## Reducer actions (27 total)
+SET_TAB, SET_LB, SET_SCENARIO, SET_COMPARE, CLEAR_COMPARE, DEACTIVATE,
+UPDATE_ZQ_PRICE, UPDATE_ZQ_MTG, UPDATE_ZQ_N, UPDATE_ZQ_M, UPDATE_SR_PRICE,
+UPDATE_YC_RATE, APPLY_LIVE_ZQ, APPLY_LIVE_KALSHI, APPLY_LIVE_POLY,
+APPLY_LIVE_SOFR, APPLY_LIVE_YC, APPLY_LIVE_TAYLOR, UPDATE_TAYLOR, UPDATE_TR,
+SET_RIDE_SELECTED, TOGGLE_RIDE_FILTER, APPLY_BALANCE_SHEET, APPLY_FIN_STAB,
+SET_BSD, SET_FSD, LOAD_SETTINGS
+(APPLY_LIVE_TAYLOR is handled but nothing dispatches it yet.)
+Check: `node check_html.mjs fed_funds_v3.html --registry CLAUDE.md`
 
 ## FOMC schedule (seed)
 Apr 28-29, Jun 17-18, Jul 28-29, Sep 16-17, Oct 28-29, Dec 9-10, Jan 27-28, Mar 17-18
